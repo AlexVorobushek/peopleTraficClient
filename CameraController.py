@@ -39,5 +39,14 @@ class CameraController():
         CameraController.create_new_camera_table(cursor, connection, camera_params['name'])
 
         connection.close()
+    
+    def delete_camera(camera_name):
+        connection = sqlite3.connect(
+            params.db_params['db_path']
+        )
+        cursor = connection.cursor()
+        command = f"DROP TABLE {camera_name};"
+        cursor.execute(command)
+        connection.close()
 
 CameraController.create_camera(name='camera3')
