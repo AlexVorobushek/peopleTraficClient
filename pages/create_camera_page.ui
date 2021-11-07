@@ -6,14 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>301</width>
+    <height>273</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>301</width>
+    <height>273</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>301</width>
+    <height>273</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>create camera</string>
   </property>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="name_line">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -131,26 +143,6 @@
     <string>capture height</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>130</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>160</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
@@ -169,7 +161,7 @@
     <string>port id</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="port_id_spin">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -178,8 +170,11 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="maximum">
+    <number>10</number>
+   </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="create_btn">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -192,7 +187,7 @@
     <string>Create</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_2">
+  <widget class="QSpinBox" name="vva_spin">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -201,8 +196,11 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="maximum">
+    <number>90</number>
+   </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_3">
+  <widget class="QSpinBox" name="hva_spin">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -211,8 +209,11 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="maximum">
+    <number>90</number>
+   </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_4">
+  <widget class="QSpinBox" name="ta_spin">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -221,8 +222,11 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="maximum">
+    <number>90</number>
+   </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="cancel_btn">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -233,6 +237,32 @@
    </property>
    <property name="text">
     <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="cw_spin">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>130</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="ch_spin">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>160</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
    </property>
   </widget>
  </widget>

@@ -47,7 +47,8 @@ class MapClass:
             # d.point((x, y), (255, 255, 255))
             d.ellipse((x-3, y-3, x+3, y+3), (255, 255, 255))
         
-        img.save('images/map.jpg')
+        # img.save('images/map.jpg')
+        return img
     
     def __str__(self) -> str:
         return json.dumps(self.peoples)

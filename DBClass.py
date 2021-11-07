@@ -1,6 +1,5 @@
 from datetime import datetime
 import sqlite3
-import datetime
 
 
 class DBClass:
@@ -31,20 +30,19 @@ class DBClass:
         column_names = [desc[0] for desc in self.cur.description]
         return dict(zip(column_names, res))
     
-    def get_all_recordes(self):
-        result = self.cur.execute(f"SELECT * FROM {self.camera_name};").fetchall()
+    def get_all_recordes(self, coloums = []):
+        str_coulums = '*' if not coloums else ', '.join(coloums)
+
+        result = self.cur.execute(f"SELECT {str_coulums} FROM {self.camera_name};").fetchall()
         column_names = [desc[0] for desc in self.cur.description]
         return list(map(lambda x: dict(zip(column_names, x)), result))
     
     def close(self):
         self.connection.close()
     
-    def search_record_by_datetime(self, datetime:datetime) -> dict:
-        camera_recordes = self.get_all_recordes()
-        for record in camera_recordes[::-1]:
-            if record['datetime'] <= str(datetime):
-                return record
-        return camera_recordes[0]
+    def search_record_by_id(self, id:int) -> dict:
+        result = self.cur.execute(f"SELECT * FROM {self.camera_name} WHERE id = {id};").fetchone()
+        return result
 
     @staticmethod
     def activate(camera_name):

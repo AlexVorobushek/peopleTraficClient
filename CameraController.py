@@ -18,6 +18,7 @@ class CameraController():
         cursor.execute(command)
         connection.commit()
     
+    @staticmethod
     def create_new_camera_table(cursor, connection, camera_name):
         command = f'''
         CREATE TABLE {camera_name} (
@@ -27,7 +28,6 @@ class CameraController():
         );
         '''
         cursor.execute(command)
-
 
     @staticmethod
     def create_camera(**camera_params):
@@ -40,6 +40,7 @@ class CameraController():
 
         connection.close()
     
+    @staticmethod
     def delete_camera(camera_name):
         connection = sqlite3.connect(
             params.db_params['db_path']
@@ -48,5 +49,3 @@ class CameraController():
         command = f"DROP TABLE {camera_name};"
         cursor.execute(command)
         connection.close()
-
-CameraController.create_camera(name='camera3')
