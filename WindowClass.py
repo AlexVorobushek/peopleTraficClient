@@ -28,23 +28,23 @@ class Window(QMainWindow):
         self.button_create_camera.clicked.connect(open_create_camera_window)
         self.button_delete_camera.clicked.connect(self.clicked_delete_camera)
         self.button_update_camera_records.clicked.connect(self.clicked_update_camera_records)
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ   Нада подключить функцию self.open_map при клике на элемент в списке
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
+        # код код код код код
+        # код код код код код
+        # код код код код код
+        # код код код код код   Нада подключить функцию self.open_map при клике на элемент в списке
+        # код код код код код
+        # код код код код код
+        # код код код код код
     
     def update_cameras_list(self):
         all_cameras_names = get_camera_list_by_db()
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ   Нада обновить элементы в выпадающем списке
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
+        # код код код код код
+        # код код код код код
+        # код код код код код
+        # код код код код код   Нада обновить элементы в выпадающем списке
+        # код код код код код
+        # код код код код код
+        # код код код код код
     
     def clicked_delete_camera(self):
         CameraController.delete_camera(
@@ -61,13 +61,13 @@ class Window(QMainWindow):
         if len(camera_records) > records_amount:
             camera_records = camera_records[:records_amount]
         camera_records = ['\t'.join(i) for i in camera_records]
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ   Нада обновить элементы в списке
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
+        # код код код код код
+        # код код код код код
+        # код код код код код
+        # код код код код код   Нада обновить элементы в списке
+        # код код код код код
+        # код код код код код
+        # код код код код код
     
     def open_map(self, record_id: int):
         visibility_map = MapClass.activate(
@@ -77,13 +77,13 @@ class Window(QMainWindow):
             record_id
         )
         img = visibility_map.draw()
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ   Нада обновить изображение
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
-        # ПОЛИНА ДОДЕЛАЙ
+        # код код код код код
+        # код код код код код
+        # код код код код код
+        # код код код код код   Нада обновить изображение
+        # код код код код код
+        # код код код код код
+        # код код код код код
 
 
 class CCWindow(QMainWindow):
