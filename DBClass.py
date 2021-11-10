@@ -30,7 +30,7 @@ class DBClass:
         column_names = [desc[0] for desc in self.cur.description]
         return dict(zip(column_names, res))
     
-    def get_all_recordes(self, coloums = []):
+    def get_all_recordes(self, coloums = []) -> list:
         str_coulums = '*' if not coloums else ', '.join(coloums)
 
         result = self.cur.execute(f"SELECT {str_coulums} FROM {self.camera_name};").fetchall()

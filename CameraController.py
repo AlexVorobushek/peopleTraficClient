@@ -46,6 +46,14 @@ class CameraController():
             params.db_params['db_path']
         )
         cursor = connection.cursor()
+
+        #  delete camera table
         command = f"DROP TABLE {camera_name};"
         cursor.execute(command)
+
+        #  delete camera params
+        command = f'DELETE FROM params WHERE name = "{camera_name}";'
+        cursor.execute(command)
+
+        connection.commit()
         connection.close()

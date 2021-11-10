@@ -1,4 +1,3 @@
-from datetime import datetime
 from textwrap import fill
 from PIL import Image, ImageDraw
 import json
@@ -56,12 +55,12 @@ class MapClass:
     def add_point_at_map(self, point):
         self.peoples.append(point)
 
-    def filling_from_db_by_datetime(self, datetime:datetime):
+    def filling_from_db_by_id(self, id):
         db = DBClass.activate(self.camera_params['name'])
-        record = db.search_record_by_datetime(datetime)
-        db.close
+        record = db.search_record_by_id(id)
+        db.close()
 
-        self.peoples = json.loads(record['map'])
+        self.peoples = json.loads(record[2])
 
     @staticmethod
     def activate(camera_name):

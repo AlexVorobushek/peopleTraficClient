@@ -21,6 +21,7 @@ def get_camera_list_by_db() -> list:
     return result
 
 
+#  main window class
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -28,55 +29,52 @@ class Window(QMainWindow):
         self.button_create_camera.clicked.connect(open_create_camera_window)
         self.button_delete_camera.clicked.connect(self.clicked_delete_camera)
         self.button_update_camera_records.clicked.connect(self.clicked_update_camera_records)
-        # код код код код код
-        # код код код код код
-        # код код код код код
-        # код код код код код   Нада подключить функцию self.open_map при клике на элемент в списке
-        # код код код код код
-        # код код код код код
-        # код код код код код
+        self.list_camera_records.itemClicked.connect(self.camera_record_cliced)
     
     def update_cameras_list(self):
         all_cameras_names = get_camera_list_by_db()
-        # код код код код код
-        # код код код код код
-        # код код код код код
-        # код код код код код   Нада обновить элементы в выпадающем списке
-        # код код код код код
-        # код код код код код
-        # код код код код код
+
+        self.comboBox_camera_name.clear()
+        self.comboBox_camera_name.addItems(
+            all_cameras_names
+        )
     
     def clicked_delete_camera(self):
         CameraController.delete_camera(
-            self.comboBox_camera_name.text()
+            self.comboBox_camera_name.currentText()
         )
         self.update_cameras_list()
     
     def clicked_update_camera_records(self):
         db = DBClass.activate(
-            self.comboBox_camera_name.text()
+            self.comboBox_camera_name.currentText()
         )
-        records_amount = self.spin_show_last.text()
-        camera_records = db.get_all_recordes(['id', 'datatime'])
+        records_amount = int(self.spin_show_last.text())
+        camera_records = db.get_all_recordes(['id', 'datetime'])
         if len(camera_records) > records_amount:
             camera_records = camera_records[:records_amount]
-        camera_records = ['\t'.join(i) for i in camera_records]
-        # код код код код код
-        # код код код код код
-        # код код код код код
-        # код код код код код   Нада обновить элементы в списке
-        # код код код код код
-        # код код код код код
-        # код код код код код
+        camera_records = ['\t'.join(map(str, record.values())) for record in camera_records]
+
+        self.list_camera_records.clear()
+        self.list_camera_records.addItems(
+            camera_records
+        )
     
-    def open_map(self, record_id: int):
+    def camera_record_cliced(self, line_text):
+        line_text = line_text.text()
+
+        self.map_name.setText(
+            self.comboBox_camera_name.currentText()+' '+line_text.split("\t")[-1]
+        )
+        record_id = int(line_text.split()[0])
         visibility_map = MapClass.activate(
-            self.comboBox_camera_name.text()
+            self.comboBox_camera_name.currentText()
         )
         visibility_map.filling_from_db_by_id(
             record_id
         )
         img = visibility_map.draw()
+        # self.image.pixmap(img)
         # код код код код код
         # код код код код код
         # код код код код код
@@ -86,6 +84,7 @@ class Window(QMainWindow):
         # код код код код код
 
 
+#  create camera window class
 class CCWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
@@ -103,12 +102,14 @@ class CCWindow(QMainWindow):
             capture_height = self.ch_spin.text(),
             port_id = self.port_id_spin.text(),
         )
-        first_window.update_cameras_list()
+        main_window.update_cameras_list()
         self.close()
 
 
-if __name__ == '__main__':
+def activate():
     app = QApplication(sys.argv)
-    first_window = Window()
-    first_window.show()
+    global main_window
+    main_window = Window()
+    main_window.update_cameras_list()
+    main_window.show()
     sys.exit(app.exec_())
